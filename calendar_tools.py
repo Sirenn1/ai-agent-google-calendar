@@ -34,7 +34,7 @@ def create_calendar_list(calendar_name):
     calendar_list = {
         'summary': calendar_name
     }
-    created_calendar_list = calendar_service.calendarList().insert(body=calendar_list).execute()
+    created_calendar_list = calendar_service.calendars().insert(body=calendar_list).execute()
     return created_calendar_list
 
 def list_calendar_list(max_capacity=200):
@@ -113,6 +113,7 @@ def list_calendar_events(calendar_id, max_capacity=20):
             break 
     return all_events
 
+
 def insert_calendar_event(calendar_id, **kwargs):
     """
     Inserts an event into the specified calendar.
@@ -123,10 +124,17 @@ def insert_calendar_event(calendar_id, **kwargs):
     - **kwargs: Additional keyword arguments representing the event details.
     Returns:
     - The created event.
-    """
+    """    
     request_body = json.loads(kwargs['kwargs'])
     event = calendar_service.events().insert(
         calendarId=calendar_id,
         body=request_body
     ).execute()
     return event
+
+
+def list_calendars():
+    calendars = calendar_service.calendarList().list().execute()
+    for cal in calendars['items']:
+        print(f"Calendar Name: {cal['summary']}, ID: {cal['id']}")
+list_calendars()

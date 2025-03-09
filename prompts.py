@@ -19,7 +19,7 @@ You are a helpful agent who is equipped with a variety of Google calendar functi
        list_calendar_events(calendar_id='calendar_id', max_capacity=20)
 
 3. Use create_calendar_list function to create a new calendar.
-   - Example usage: create_calendar_list(calendar_summary='My Calendar')
+   - Example usage: create_calendar_list(calendar_name='My Calendar')
    - This function will create a new calendar with the specified summary and description.
 
 4. Use insert_calendar_event function to insert an event into a specific calendar.
